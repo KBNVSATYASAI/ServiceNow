@@ -1,0 +1,52 @@
+developer service now palltform
+docs 
+community
+community
+events
+
+what is mean by instance?
+it is an interface where users are interacting with the service now for services services 
+
+ticketing tool--> with out manual intervension 
+
+
+main idea of service now --> it is cloud based and it is automative workflow , collaborating the work in the single instance 
+
+interfaces types 
+next experience ---> is used to learn in now learning 
+
+2) mobile interface
+3)Service Portal 
+4)employe center is used to track the resources.
+
+every instance has sp,esc 
+
+we can found a new instance in developer . service now 
+
+
+
+next Experiences-----> Menus
+All---> different applications----> sub categoris(modules)
+
+
+Favourites
+
+
+workflows---> cmdb----> it gives the overviews of the resources.it will be int the pictorial representation.
+
+Home---> current position where i am in the instance 
+
+
+*search
+
+
+Notifications
+
+
+user profile---->
+
+impersonation--------- > peeking the previlages of users 
+
+Sevice Catalog ---> 
+
+
