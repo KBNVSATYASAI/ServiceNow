@@ -1,0 +1,129 @@
+Grant and verify access to application
+
+lab 1.2.1
+
+
+Section 1:- Add new Users 
+
+Navigate to All > System Security > Users and groups 
+
+And Select them as a favourites and pin
+
+Now Navigate to the favourites and select users and groups - users 
+
+Now we need to add users by clicking on NEW 
+
+and fill the Details offered their And the details looks like :
+
+7. Complete the form as follows:
+• User ID: Bob.HR_Support
+First Name: Bob
+• Last Name: HR Support
+Department: HR
+Active: Leave check box selected
+Email: Bob@example.com
+
+
+Now Right click on the form header to save the record(user)
+
+And now create the another user by changing the fields like Fname,Lname  and email.
+
+Now Right click on the form header and select the insert and stay 
+
+"
+Note: The Insert and Stay function creates a new record (Insert) as a copy of the active record
+with your new changes and stays on the format allowing you to make updates. This saves time
+in creating similar records.
+"
+
+Now return to the users list and confirm that there are two users.
+
+
+
+
+
+
+
+
+
+
+
+SEction 2:-Identify the HR groups and make them favourite 
+
+Navigate to favourites > Users and groups - Groups
+
+On the List header , select the show/hide filter (funnel) icon icon to create a filter for groups containg the HR or Human Resources .
+
+->Add the condition for name | Contains | HR
+->Select OR
+-> Add the condition for Name | contains | HUman Resources 
+
+-> Select Run
+
+Now add this to the favourites by clicling on the three lines and click on the crate favourite 
+
+-> Now change the name to HR groups.
+
+
+
+
+
+
+
+
+Section 3:-Real-- World Assignment groups 
+
+
+Add users to appropriate groups 
+
+It has been determined that the HR Technical Support representatives need to be in the HR Systems
+and HR Systems Support groups.
+
+-> Open the HR SYSTEMS group record
+-> Select the group Members tab.
+-> Select Edit
+-> on the collection klist type the bob and enter and add the bobHR SUPPORT to the group.
+
+Repeat the process for the Jane HR SUPPORT.
+
+-> Now save the work.
+
+-> Using the faavourites return tp the  HR groups.And then open the HR system Support .
+
+And add the bob,jane to the HR SYSTEM SUPPORT GROUP.
+Select Save.
+Now Navigate to the Users and Froups - USers .
+-> And check the groups tab and confirm janes's group memberships.
+
+
+
+
+
+
+
+
+
+Section 4:- Impersonate the HR Case Agents:-
+Now navigate to the HR groups and select the HR ADMIN ANd add the role to HR admin as the Impersonater then add to them and come to the group members and add the bob HR SUPPORT AND JANE HR SUPPORT to the HR admin.
+
+
+-> Use History to view the janes record.
+
+
+
+
+
+
+
+
+Section 5 :- Verify HR admin can create an HR Case
+
+-> Impersonate to the Bob HR Support 
+
+-> Navigate to All > HR Case Management > ALL HR Cases > ALL 
+
+-> On the List header select New 
+
+-> NOw Selecr Beth Anglin and create the case .
+
+Now end the impersonation.
