@@ -1,0 +1,93 @@
+ShortCuts:-
+
+
+Incident.list-----> it opens the list view of the incidents 
+
+
+incident.do-----> it directly take to create a new incident (opens form)
+
+
+Filters 
+Searches
+Condition Builder, BreadCrumbs
+
+
+
+
+
+
+
+Context Menu ---->
+
+For every application we have their own menu for list its called as list control menu 
+for form its called form memu
+for field in form also we have menu 
+And for field in the table of incident also we have its menu so service now is easily configuarable and customizable 
+
+List Controls ---> 
+View, 
+Create favourites, 
+rows per page, 
+Filters
+Group By
+
+
+
+
+Modifying lists and forms:-
+congigurre->list
+congigurre->notes
+congigurre->forms
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Customization :-  
+
+Client Side and Server Side 
+
+client --- > requests ---> server ----> requests ---- > db
+
+db ---> response ----> server ----> respomse ---> client 
+
+this whole time happen is knowns as "Round Trip TIme(RTT)".
+
+
+
+
+
+
+UI policies -----> it runs on the client side and it used to customize the things(Tables) like read only , visible or not on a particular condition.
+
+https://chatgpt.com/share/684d160d-24d4-8009-a462-8317dc29dbde =====> ui policies and ui actions.
+
+
+UI ACTIONS 
+
+BUSINESS RULES
+
+CLIENT SCRIPTING  ---> ONLOAD(), ONSUBMIT(), ONCELLEDIT(), ONCHANGES() 
+->IT WAS APPLICABLE ON THE FORM VIEW AND ALSO IN THE LIST VIEW.
+
+
+DATA POLICY ---> is something similer to the ui policy but here only the read and mandatory No show/hide.  
+
+
+
+
+
+
+
+
+
+
