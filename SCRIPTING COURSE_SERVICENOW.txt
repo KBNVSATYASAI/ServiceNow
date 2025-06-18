@@ -1,0 +1,323 @@
+SCRIPTING COURSE
+
+
+LAB 1.3.1 ---> IN scripting Course 
+
+1) Using the Syntax Editor 
+
+---->Enter "Client Scripts" in the Application Navigator's Filter navigator field.
+-->Select the System Definition > Client Scripts module.
+
+Now go to the "NEW" and create  the new Script and go to the textarea provided by them is known as the syntax editor and now code the script and see the colour , formatting and commenting the code and how the editor behaving before and after .
+And also experiment the different feutures available in the syntax editor like replace, replace All, toggle the editor etc.. and also Searching.
+
+
+
+---------->C. Create a Syntax Editor Macro
+
+I .
+ Navigate to System Definition > Syntax Editor Macros.
+
+2. Create a new macro:
+Name: try
+Comments: Client-side try/catch
+Text:
+
+
+
+
+
+
+
+Lab 1.3.2 ====>
+
+this lab is to check he syntax what we have writen Is correct or not.
+
+
+g_form(GLIDE FORM)
+g_user(GLIDE USER)
+g_scratchpad
+these three are the apis offered by the client-scripts.
+
+
+
+Scripting overview
+
+
+Good Practices
+
+
+Use a Condition Builder whenever possible to configure your instance.
+
+
+Create a Syntax Editor Macro to quickly insert commonly used syntax.
+
+
+Expand the Script Editor when editing large scripts.
+
+• Identify the Scope of your script to ensure it only affects the resources in the same scope.
+
+Use the Now Community and ServiceNow websites.
+
+Join at least one SNUG.
+
+there are scoped and global level applications for each we have the classes and methods it will be client and server once see rthe pdfs in the folder to recap the things.
+
+
+
+
+
+
+
+
+MODULE 2 :-
+
+Module objectives :-
+
+Define what a Client Script is
+
+Explain when to use a Client Script
+
+Write, test, and debug Client Scripts
+
+Use the g_form and g_user objects and methods
+
+Compare and revert a script to a different version
+
+Module labs
+
+Lab 2.1.1
+
+Two Simple Client Scripts
+
+Lab 2.2.1
+
+-g_form and g_user
+
+Lab 2.3.1
+
+Debugging Client Scripts
+
+
+
+CLIENT SCRIPTS:-
+
+Client Script Overview: What is a Client Script?
+
+Client Scripts manage the behavior of forms, fields, and lists in real time
+
+Make fields mandatory
+
+Set one field in response to another
+
+Modify choice list options
+
+Hide/Show form sections
+
+Display an alert
+
+Hide fields
+
+Prohibit list editing
+
+Client Scripts execute client-side (web browser)
+
+Browsers may present items in different ways
+
+
+
+HOW TO NAVIGATE TO THE CLIENT SCRIPTS 
+System Definitions ===> Client Scripts
+
+
+Things that are are present in the client Scripts :-
+
+While on the Client Scripts list, select New to create a new Client Script.
+
+
+Name — name of the Client Script. Use a standard naming scheme to identify custom scripts.
+
+
+Table — table the form or list is related to.
+
+
+Ui Type — select whether the script executes for Desktop only, Mobile/Service Portal only or All
+environments.
+
+
+Type — select when the script runs: onChange, onLoad, onSubmit, or onCellEdit.
+
+
+Field name — used only if the script responds to a field value change (onChange or onCeIIEdit);
+name of the field to which the script applies.
+
+
+Application — identifies the scope of the Client Script.
+
+
+Active — if selected the script executes in the runtime environment.
+
+
+Inherited — execute the script for forms from any extending tables when selected.
+
+
+
+Global — if Global is selected the script applies to all Views. If the Global field is not selected, you
+must specify the View.
+
+
+View — specifies the View to which the script applies. The View field is only visible when Global is
+not selected. A script can only act on the fields part of the selected form View. If the View field is
+blank the script applies to the Default view.
+
+
+
+
+🧠 Client Script: Trigger – Order
+✅ What is the Order Field?
+The Order field defines the sequence in which Client Scripts are executed on the same table and trigger type (e.g., onLoad, onChange, etc.).
+
+
+
+
+🧠 Client Script Type: onChange()
+✅ What It Does:
+The onChange() client script runs automatically when a specific field’s value changes on a form.
+
+
+
+🎯 Use Cases:
+Scenario	Action
+If Configuration Item changes	Automatically set the Assignment Group
+If Priority becomes 1	Add manager to Watch List
+
+
+
+🧪 Only One Field per Script:
+An onChange() script monitors one field only.
+
+Need to monitor multiple fields? ➜ Create multiple onChange() scripts.
+
+
+
+⚙️ Parameters in onChange() Function:
+
+function onChange(control, oldValue, newValue, isLoading, isTemplate) {
+   // your logic here
+}
+
+
+
+
+
+| Parameter    | Description                                                            |
+| ------------ | ---------------------------------------------------------------------- |
+| `control`    | The field element that changed (e.g., `g_form.getControl('priority')`) |
+| `oldValue`   | The field’s value when the form first loaded                           |
+| `newValue`   | The field’s value after the change                                     |
+| `isLoading`  | `true` if the change is from form load (not user interaction)          |
+| `isTemplate` | `true` if the change happened via a template                           |
+
+
+
+
+
+
+
+✅ Client-side API: g_form Methods
+
+The g_form object is used client-side to control and manipulate form fields dynamically.
+
+🔧 Common g_form Methods with Use Cases
+
+
+| Method                                         | Description / Use Case                                  |
+| ---------------------------------------------- | ------------------------------------------------------- |
+| `g_form.addInfoMessage(msg)`                   | Display an informational message at the top of the form |
+| `g_form.addOption(field, value, label, index)` | Add an option to a choice list                          |
+| `g_form.clearMessages()`                       | Clear all previously displayed form messages            |
+| `g_form.clearOptions(field)`                   | Remove all options from a dropdown/choice field         |
+| `g_form.clearValue(field)`                     | Clear a field's value                                   |
+| `g_form.flash(field)`                          | Highlight a field label temporarily to draw attention   |
+| `g_form.getSections()`                         | Returns form sections as an array                       |
+| `g_form.getValue(field)`                       | Get the current value of a form field                   |
+| `g_form.isNewRecord()`                         | Returns `true` if the record is new (never saved)       |
+| `g_form.setValue(field, value)`                | Set a field’s value programmatically                    |
+| `g_form.showFieldMsg(field, msg, type)`        | Show message (info, error, warning) under a field       |
+
+
+
+💡 Use Case Examples:-
+// Show a success message at top of form
+g_form.addInfoMessage("Incident assigned successfully!");
+
+// Set the 'priority' field to '1'
+g_form.setValue('priority', '1');
+
+// Flash the 'short_description' field
+g_form.flash('short_description');
+
+// Show a warning under the 'impact' field
+g_form.showFieldMsg('impact', 'Please reconsider the impact level.', 'warning');
+
+// Get value of 'category'
+var category = g_form.getValue('category');
+
+// Clear options from 'subcategory' dropdown
+g_form.clearOptions('subcategory');
+
+
+
+REFERS THE PARAMETERS NAME BY THEIR FIELD NAME NOT BY THE LABEL NAME 
+
+EXAMPLE :- 
+Show Discription -----> label Name 
+show_discription -----> filed name 
+
+
+
+in g_user object contains the ===========>  userID, FierstName, LastName, SysID.
+
+
+
+
+Here’s a summary of the g_user client-side object in ServiceNow:
+
+🔹 What is g_user?
+The g_user object is a read-only object in ServiceNow that provides information about the currently logged-in user on the client side (browser).
+
+🧾 Common g_user Properties
+| Property    | Description                  | Example            |
+| ----------- | ---------------------------- | ------------------ |
+| `firstName` | Logged-in user's first name  | `g_user.firstName` |
+| `lastName`  | Logged-in user's last name   | `g_user.lastName`  |
+| `userID`    | User's sys\_id               | `g_user.userID`    |
+| `userName`  | User's username (login name) | `g_user.userName`  |
+
+
+
+
+🛠️ Useful g_user Methods
+| Method                  | Description                                   |
+| ----------------------- | --------------------------------------------- |
+| `getFullName()`         | Returns full name (`First Last`)              |
+| `getClientData(key)`    | Returns session client data for the given key |
+| `hasRole(role)`         | `true` if user has the role or is `admin`     |
+| `hasRoleExactly(role)`  | `true` if user has **only** the specific role |
+| `hasRoleFromList(list)` | `true` if user has **any** role from the list |
+| `hasRoles()`            | `true` if user has **any** role               |
+
+
+
+
+🔍 Examples:-
+
+alert("Username: " + g_user.userName);
+alert("Full Name: " + g_user.getFullName());
+
+if (g_user.hasRole("itil")) {
+  alert("User is an ITIL fulfiller");
+}
+
+
+
