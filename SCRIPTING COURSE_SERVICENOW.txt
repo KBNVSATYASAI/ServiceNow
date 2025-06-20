@@ -69,8 +69,11 @@ there are scoped and global level applications for each we have the classes and 
 
 
 
+CLIENT SCRIPTING STARTS:-
+--------------------------
 
 MODULE 2 :-
+-----------
 
 Module objectives :-
 
@@ -318,6 +321,823 @@ alert("Full Name: " + g_user.getFullName());
 if (g_user.hasRole("itil")) {
   alert("User is an ITIL fulfiller");
 }
+
+
+
+CLIENT SIDE DEBUGGING :-
+
+addInfoMessage() , addErrorMessage().
+
+
+===> for client side debugging we use alert(), try/catch blocks and also some pop up blocks or confirmation dialog boxes to give feedback to the user for their request.
+
+And showFieldMsg()  method can also useful to display the debugging output next to the specific field.
+
+
+
+*RESPONSE TIME INDICATOR*
+-------------------------
+Useful for locating the cause of slow page loads
+• Times are in milliseconds
+Network
+- Server
+Browser
+
+
+Set glide.ui.response_time = false if:
+🔧 Why Disable It?
+
+
+Set glide.ui.response_time = false if:
+
+You want to hide performance data from end-users.
+
+You're troubleshooting and need a cleaner UI.
+
+For production environments where response time metrics aren't needed visually.
+
+Let me know if you want help analyzing a high browser/server response time case.
+
+
+try/catch :-
+
+Try/Catch syntax:
+
+try {
+/ / code to execute goes here
+}
+catch (err) {
+// code to deal with error here
+}
+
+*err* is a JavaScript object with properties description, message, name, and number.
+
+You can throw your own error messages for the catch function using the JavaScript throw() function.
+
+Try/catch only traps runtime errors. Using throw() you can also catch user errors such as entering an invalid data value in a field.
+
+
+
+
+Reference Objects :- it is like a foreign key.
+
+
+Client Script versions we can see the versions of the scripts and we can view, revert, compare, audit the versions of the scripts.
+
+
+
+
+Client Scripts:-
+
+Good Practices:-
+
+• Use the g_form methods to manage the form and form fields.
+
+• Use the g_user properties and methods to access information about the currently logged-ir
+user.
+
+• Make as few calls to the server as possible.
+
+• Use try/catch to find runtime errors.
+
+• Use methods and debugging strategies appropriate to Desktop, Mobile/Service Portal or
+All.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MODULE 3 STARTS :-
+-------------------
+
+UI POLICIES:-
+--------------
+
+📘 UI Policies – Quick Notes
+
+✅ What is a UI Policy?
+
+Controls field behavior on forms (Client-side)
+
+Used to make fields:
+
+✅ Mandatory
+
+👀 Visible / Hidden
+
+🔒 Read-only
+
+
+
+🔁 When does a UI Policy run?
+
+When the defined condition is true
+
+Or always, if no condition is set
+
+
+
+⚙️ Execution Order
+
+Client Scripts run before
+
+UI Policies run after Client Scripts
+
+
+
+🧠 Why Use UI Policies (vs Client Scripts)?
+
+✅ No code required
+
+✅ Easier to manage
+
+✅ Better performance (faster load)
+
+✅ Preferred for simple field changes
+
+
+
+
+🔍 Examples (No Script Needed):
+
+Make Number field read-only
+
+Make Configuration Item mandatory
+
+Hide Priority field
+
+
+
+
+⚠️ Important
+
+UI Policies do not run unless:
+
+Their condition is met
+
+Or they have no condition (then they run always)
+
+📦 Baseline UI Policies
+
+Pre-built in ServiceNow
+
+Define default behavior for forms/fields
+
+Can be found in:
+
+UI Policy table (sys_ui_policy)
+
+Navigate via: System UI > UI Policies
+
+
+
+
+
+
+📘 Policy Scripting – Quick Notes
+
+✅ What is Policy Scripting?
+Allows custom JavaScript in a UI Policy's "Run Scripts" section
+
+Enhances UI Policy behavior with complex logic
+
+🔧 What You Can Do with Policy Scripting:
+✅ Show/Hide sections (like tabs)
+
+✅ Add/Remove/Validate field values
+
+✅ Change field visibility, mandatory, read-only status dynamically
+
+✅ Execute conditional logic that’s not possible with standard UI Policy Actions
+
+💡 Use Case Example:
+UI Policy: “Comments mandatory on Rejection”
+
+Policy script makes the Comments field mandatory only when State = Rejected
+"
+if (g_form.getValue('state') == 'rejected') {
+  g_form.setMandatory('comments', true);
+}
+"
+
+🛠️ Where it Runs:
+Client-side (browser)
+
+Inside the "Run Scripts" section of a UI Policy
+
+⚠️ Best Practices:
+Use UI Policy Actions when possible (no code)
+
+Use scripts only when logic is too complex
+
+Keep scripts simple and efficient
+
+
+
+📘 UI Policy Execution – Deep Dive Notes
+🔁 Trigger vs Action
+Trigger = When to run (based on condition)
+
+Action/Script = What to run (e.g., make field mandatory)
+
+🟢 UI Policy Setup (4-Step Strategy)
+Step 1: Configure Trigger
+Table: Target table (e.g., incident)
+
+Application: Scope of the policy
+
+Active: Checkbox to enable/disable the policy
+
+Short Description: Used as pseudo-name (no actual Name field)
+
+Description (optional): Add for detailed documentation
+
+Order: Determines execution order if multiple UI Policies exist
+
+Lower number = runs first
+
+Step 2: Set ‘When to Apply’ Conditions
+Define logic: e.g., State is Rejected
+
+If no condition = runs always
+
+UI Policy evaluates all fields in the record (even if not on form)
+
+Step 3: Save (Not Submit) the Record
+Why Save? So you can define Actions before submitting
+
+Step 4: Add UI Policy Actions
+Field name: Must be present on the form
+
+Mandatory: Make field required
+
+Visible: Show/Hide field
+
+Read Only: Lock/Unlock field
+
+
+
+
+
+The onCondition() function in the appropriate UI Policy script fields is automatically called when the condition returns true or false.
+
+
+Ui Policies :-
+
+
+Good Practices
+
+• Use as few Ui Policies as possible to avoid long page load times.
+
+• Add the Description field to the form to thoroughly document the Ul Policy.
+
+• Set onLoad to false if you do not need to execute on page load.
+
+Apply conditions using the Condition Builder, whenever possible.
+
+• Comment your scripts!
+
+Apply conditions using the Condition Builder whenever possible so unnecessary Ul Policy scripts do not load.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*BUSINESS RULES* :- 
+-------------------
+
+
+✅ Business Rule in ServiceNow – Clean Definition:- 
+
+A Business Rule in ServiceNow is a server-side script that runs when a record is inserted, updated, deleted, or queried in the database. It is used to automate processes, enforce data consistency, or trigger logic based on conditions.
+
+
+
+
+📌 Key Characteristics:
+Executes on the server, not on the client browser.
+
+Can run before or after a database action.
+
+Written in JavaScript.
+
+Can interact with records, send notifications, call external systems, etc.
+
+Attached to a specific table (like Incident, Problem, etc.).
+
+
+
+
+
+🧠 Example Use Cases:
+Automatically assign an incident to a group based on category.
+
+Prevent users from closing an incident if mandatory fields are empty.
+
+Update related records when a parent record changes.
+
+
+
+
+🔄 Types of Business Rules:
+
+Before: Runs before a record is saved to the database.
+
+After: Runs after a record is saved.
+
+Async: Runs after saving, but asynchronously (in the background).
+
+Display: Runs before the form is displayed (used to pass server data to client).
+
+
+
+
+
+
+
+
+
+
+
+✅ When Business Rules Run in ServiceNow
+
+A Business Rule in ServiceNow is a server-side automation that runs when specific operations (like insert, update, delete, or query) occur on a database table. It watches the database and responds to record access events, such as when a Problem record is updated.
+
+
+
+
+
+
+🔄 Triggering a Business Rule
+
+Business Rules use triggers to determine when they execute. You configure this using:
+
+When to Run:
+
+Before: Runs before saving the record.
+
+After: Runs after the record is saved.
+
+Async: Runs after saving, but in the background.
+
+Display: Runs before the form is displayed (passes data from server to client).
+
+
+
+
+
+Action types:
+
+Insert – new record creation
+
+Update – changes to existing records
+
+Delete – record removal
+
+Query – record retrieval (less common)
+
+
+
+
+
+
+
+🛠️ How to Create a Business Rule (with Trigger Configuration)
+Navigate to:
+System Definition > Business Rules
+Click New.
+
+Configure the trigger fields:
+
+Name – Unique name for the Business Rule.
+
+Application – Defines the scope the rule runs in. Set this carefully to avoid affecting unrelated applications.
+
+Table – The table where the rule applies (e.g., incident, problem).
+
+Active – Check this to enable the rule.
+
+Advanced – Check this to enable the Advanced tab where you can write server-side scripts.
+
+(Optional but recommended):
+
+Add a Description field to document what the Business Rule does — helps future maintainers.
+
+
+
+
+
+🧠 Notes:
+Not all Business Rules need scripting — simple actions can be done using the standard UI.
+
+Best practice is to always test Business Rules in a sub-production environment before promoting them live.
+
+
+
+
+
+
+
+
+
+
+📘 Display Business Rule – Notes
+✅ Definition:
+A Display Business Rule is a server-side script that runs after the database query and before the form is displayed to the user.
+It is primarily used to pass data from the server to the client using the g_scratchpad object.
+
+🎯 Purpose:
+Share backend (server-side) data with client-side scripts.
+
+Avoid expensive server calls (GlideAjax) from client scripts.
+
+Preload useful data into the client environment when a form loads.
+
+⚙️ When It Runs:
+Phase	What Happens
+Step 1	Form is requested by user
+Step 2	Data is read from the database
+✅ Step 3	Display Business Rule runs
+Step 4	Form is rendered to the user
+
+📦 g_scratchpad Object:
+Global object available to Client Scripts.
+
+Has no properties unless populated in a Display Business Rule.
+
+Fast and efficient way to pass multiple values.
+
+
+
+
+🛠️ Basic Syntax:
+🔹 Display Business Rule:
+
+// Server-side
+g_scratchpad.variableName = current.field_name;
+
+
+
+
+🔹 Client Script:
+
+// Client-side
+if (g_scratchpad.variableName == 'value') {
+    g_form.setValue('field', 'new_value');
+}
+
+
+
+
+
+
+📘 Example:
+🔸 Use Case:
+You want to pass the record’s creator and caller info to a client script on form load.
+
+Display Business Rule:
+
+g_scratchpad.createdBy = current.sys_created_by;
+g_scratchpad.caller = current.caller_id;
+g_scratchpad.callerDisplayValue = current.caller_id.getDisplayValue();
+
+
+
+
+Client Script:
+
+if (g_scratchpad.createdBy == 'admin') {
+    g_form.setValue('opened_by', g_scratchpad.caller, g_scratchpad.callerDisplayValue);
+}
+
+
+
+🔁 How Display Business Rule and Client Script Work Together
+In the Display Business Rule (Server-side):
+You capture values from the current record (e.g., fields from the database).
+
+Assign them to the g_scratchpad global object:
+This object is automatically sent to the client when the form loads.
+
+In the Client Script (Client-side):
+You use those g_scratchpad values to perform field validations, set field values, show/hide fields, make fields mandatory, etc.
+
+
+
+
+
+
+
+
+
+
+*ASYNC* :-
+----------
+
+✅ Definition:
+An Async Business Rule is a server-side script in ServiceNow that runs asynchronously (in the background) after a record is inserted, updated, or queried. It is used to perform non-critical tasks like sending notifications or logging data without delaying the user’s action.
+
+🔑 Key Points:
+Runs after the record is saved to the database.
+
+Executes in the background as a scheduled job.
+
+Does not block or slow down the user experience.
+
+Ideal for tasks like notifications, integrations, SLA calculations, etc.
+
+
+
+
+
+
+
+🎯 Goal: What is the "Actions" section in a Business Rule?
+When a Business Rule runs, you can tell it what to do using the Actions section.
+
+🧰 There are 3 main actions:
+✅ 1. Set Field Values
+👉 You can tell the Business Rule to change a field’s value automatically.
+
+Example:
+If an Incident is closed, set the "Resolved By" field to the current user.
+
+💬 2. Add Message
+👉 You can show a message to the user after they save/submit the form.
+
+Example:
+“Record updated successfully” message appears at the top.
+
+🚫 3. Abort Action
+👉 You can stop the record from being saved or updated.
+
+Example:
+If a user tries to close an Incident without a short description, show an error and stop the save.
+
+📦 Example Scenario:
+You’re working on an Incident form.
+
+You want to prevent saving if "Short Description" is empty.
+
+You also want to show a message to the user like:
+“Short Description is required.”
+
+How do you do this in a Business Rule?
+
+You create a Business Rule with:
+
+✅ Condition: current.short_description.nil() == true
+
+✅ Action: ✔️ Abort Action
+
+✅ Action: ✔️ Add Message = “Short Description is required.”
+
+
+
+
+
+
+
+
+
+✅ Business Rule - Advanced Trigger:
+The Advanced tab in a Business Rule is used when basic conditions and actions are not enough and you need to write custom server-side logic using JavaScript.
+
+🧠 Why use the Advanced tab?
+Use it when:
+
+You want to check the previous value of a field (like current.state != previous.state)
+
+You want to write custom logic that can't be done with the simple UI fields.
+
+You need to use scripts with conditions, loops, or server-side logic.
+
+🔍 Fields on the Advanced tab:
+Condition (script-based)
+JavaScript code that returns true or false.
+
+If true, the Business Rule runs the script.
+
+If left blank, it's treated as true (i.e., always runs if “When to run” is true).
+
+Example:
+return current.priority == 1 && current.state == 'New';
+Script
+The main JavaScript logic to be executed server-side.
+
+Runs only if both the "When to run" condition and the advanced condition are true.
+
+Example:
+current.assigned_to = gs.getUserID();
+📌 Important:
+Both must be true:
+
+✅ The conditions on the When to run tab
+
+✅ The Condition field on the Advanced tab
+
+Then, and only then, the Script runs.
+
+🧪 Example Use Case:
+When the Incident's priority becomes "1 - Critical", assign it to the current user and set a flag.
+
+Condition:
+return current.priority == 1 && previous.priority != 1;
+Script:
+current.assigned_to = gs.getUserID();
+current.u_critical_flag = true;
+
+
+
+
+
+
+🧠 Server-side Global Variables in Business Rules
+These are predefined variables you can use in server-side scripts like Business Rules, Script Includes, and UI Actions.
+
+1. 🟢 current
+Represents the record currently being processed.
+
+Contains field values after user changes.
+
+Used to read or update record fields.
+
+✅ Example:
+current.state = 3;  // Updates state to 'Closed'
+
+
+2. 🟡 previous
+Represents the record as it was before changes were made.
+
+Used to compare old and new values.
+
+❗ Not available in Async Business Rules.
+
+✅ Example:
+
+if (previous.priority != current.priority) {
+  gs.info("Priority has changed");
+}
+
+
+
+3. 🔵 g_scratchpad
+Used only in Display Business Rules.
+
+Allows you to pass data from server to client.
+
+Acts like a temporary storage object during form load.
+
+✅ Display Business Rule:
+
+g_scratchpad.manager = current.manager;
+✅ Client Script:
+
+if (g_scratchpad.manager == 'admin') {
+  g_form.setReadOnly('manager', true);
+}
+
+
+
+4. ⚪ Local Variables
+Declared using var inside your scripts.
+
+Temporary and accessible only inside your script block.
+
+Not global.
+
+✅ Example:
+
+var msg = "This is a test";
+
+🟥 Note:
+All these variables are server-side only, except g_scratchpad which bridges server to client.
+
+
+
+
+
+
+
+
+
+
+🌐 Dot-Walking in Business Rules
+✅ Definition:
+Dot-walking is a technique used to access fields from related (referenced) records by chaining field names using a dot (.).
+
+🧠 Why Use Dot-Walking?
+Business Rules run on the server and have direct access to the database, allowing them to:
+
+Retrieve data from referenced tables (one-to-one relationship).
+
+Avoid manual queries to related records.
+
+Improve script clarity and efficiency.
+
+🔗 Dot-Walking Syntax:
+current.<reference_field>.<field_on_referenced_table>
+📘 Example Scenario:
+You’re working with an Incident record (current refers to Incident).
+
+var deptName = current.caller_id.department.name;
+What it does:
+
+caller_id → Reference to the User [sys_user] table.
+
+department → Reference to the Department [cmn_department] table.
+
+name → Actual department name string.
+
+So, it fetches the name of the department of the user who is the caller on the incident.
+
+⚠️ Important Notes:
+Dot-walking works only for one-to-one relationships (not for related lists or one-to-many).
+
+You can dot-walk through multiple levels.
+
+No need to use getDisplayValue() unless you want the display name of a reference.
+
+
+
+
+
+
+
+
+🧭 Automatically Insert Dot-Walking Paths
+🔧 Tool Used: Script Tree
+The Script Tree helps you easily build dot-walking syntax without manually typing it. It’s a visual assistant in the Business Rule scripting UI.
+
+✅ How It Works:
+Go to the Script tab of a Business Rule.
+
+Click the Script Tree icon (usually on the right side of the editor).
+
+Expand the “Fields” category to view fields of the current record.
+
+Icons guide you:
+
+🟦 Blue Circle → Field is on the current table.
+
+🔴 Red Square → Field is inherited from a parent table.
+
+📁 Table Icon → Field is a reference to another table.
+
+📌 Index Icon → Field is indexed (useful for performance).
+
+Click on a reference field (e.g., caller_id) → The Script Tree expands it to show fields from the referenced table (like department, email, etc.).
+
+Click the final field you want → The dot-walked path is inserted automatically into your script.
+
+📘 Example:
+You want to get the name of the department for the Incident's caller.
+
+In Script Tree:
+
+Expand caller_id
+
+Then expand department
+
+Click name
+
+Resulting syntax inserted:
+
+current.caller_id.department.name
+🧠 Why It's Useful:
+Reduces typing errors.
+
+Ensures correct path/syntax.
+
+Helps beginners learn dot-walking visually.
+
+Saves time during script creation.
+
+
+
+
+
 
 
 
