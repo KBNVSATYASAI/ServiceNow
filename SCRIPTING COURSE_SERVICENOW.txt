@@ -1140,4 +1140,341 @@ Saves time during script creation.
 
 
 
+📘 What is GlideSystem in ServiceNow?
+GlideSystem, often referenced as gs, is a built-in server-side API in ServiceNow that provides utility methods for interacting with the server environment, logging, debugging, and performing common tasks like generating messages or querying user/session data.
+
+
+
+
+🔧 Common Use-Cases of GlideSystem (gs)
+
+| Function               | Description                                           |
+| ---------------------- | ----------------------------------------------------- |
+| `gs.info()`            | Logs informational messages to system logs.           |
+| `gs.getUserID()`       | Gets the sys\_id of the currently logged-in user.     |
+| `gs.getUserName()`     | Gets the username of the logged-in user.              |
+| `gs.nowDateTime()`     | Returns the current date and time in datetime format. |
+| `gs.addInfoMessage()`  | Shows a green message to the user in the UI.          |
+| `gs.addErrorMessage()` | Shows a red error message to the user.                |
+| `gs.print()`           | Prints messages (used in background scripts).         |
+| `gs.getProperty()`     | Gets a system property by name.                       |
+
+
+
+✅ Example
+
+gs.info("Hello from server-side script!"); // Logs a message
+gs.addInfoMessage("Record updated successfully!"); // UI message to user
+
+
+
+
+📍 Where is GlideSystem used?
+You can use gs in:
+
+Business Rules
+
+Script Includes
+
+Scheduled Jobs
+
+Workflow Script Activities
+
+Background Scripts
+
+
+
+🔁 Analogy
+Think of GlideSystem (gs) as a toolbox full of helper functions that let developers:
+
+Log to system
+
+Interact with users
+
+Work with dates/times
+
+Query info from the environment
+
+
+
+
+
+
+🐞 Debugging: Script Debugger in ServiceNow
+The Script Debugger is a powerful tool used to debug server-side JavaScript in real-time. It allows developers to inspect, control, and analyze the execution of scripts.
+
+📍 How to Access
+Navigate to:
+System Diagnostics > Script Debugger
+
+Or from Studio:
+File > Script Debugger
+
+🛠️ Key Features
+Feature	Description
+🔁 Step Execution	Step through code line-by-line.
+🎯 Breakpoints	Set/remove breakpoints to pause execution at specific lines.
+⏸️ Pause Execution	Automatically pauses at breakpoints for inspection.
+🔍 Variable Inspection	View values of local, global, and private variables in real-time.
+📦 Call Stack	View the sequence of function calls that led to the current point.
+📄 Transaction Info	See the current transaction (like record being processed).
+↪ Step In / Out	Enter and exit function/method calls during debugging.
+
+
+🔐 Role Requirement
+You must have:
+
+admin role or
+
+script_debugger role
+
+
+
+🌐 Behavior
+Opens in a new browser window
+
+Works best when used on Business Rules, Script Includes, and other server-side scripts
+
+✅ Example Use Case
+You’re debugging a Business Rule that is updating a field incorrectly. Using the Script Debugger:
+
+Set a breakpoint before the update logic.
+
+Step through to monitor field values.
+
+Inspect variables to find incorrect data or logic.
+
+Modify your script based on findings.
+
+
+
+
+
+🧩 Anatomy of the Script Debugger
+The Script Debugger is a session-specific tool used for debugging server-side scripts line-by-line without affecting other users.
+
+👤 User-Specific Behavior
+Only one Script Debugger session can be open per user at a time.
+
+It does not impact other users — fully isolated to your session.
+
+Breakpoints and debugger state are tied to your session only.
+
+👥 Impersonation Considerations
+Administrators can use the Script Debugger while impersonating another user, but only if:
+
+The impersonated user has the admin or script_debugger role.
+
+The impersonated user has read access to the script being debugged.
+
+🔍 What You Can Do While Impersonating:
+Feature	Behavior
+🔧 Breakpoints	See/change breakpoints for the impersonated user.
+🔍 Script Access	Can view/pause on scripts that impersonated user has read access to.
+🔁 Step-Through	Step commands respect the impersonated user’s permissions. If no read access to a function, Step Into becomes Step Over.
+⏹️ When the Debugging Session Ends
+The impersonated debugging session ends if:
+
+You stop impersonating the user.
+
+You log out or the session times out.
+
+You pause the Script Debugger.
+
+You close the Script Debugger window.
+
+📘 Key Takeaways
+Debugging is isolated and secure.
+
+Permissions of the impersonated user control how deep you can debug.
+
+You need admin or script_debugger role to use the Script Debugger.
+
+
+
+
+
+
+✅ Pre-Conditions to Start Debugging
+
+| Requirement                 | Description                                                                                                                              |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| 🐞 **Script Debugger Open** | You must launch the **Script Debugger** window.                                                                                          |
+| 🎯 **Breakpoint Set**       | At least one **breakpoint** must be set in the script.                                                                                   |
+| 🧑‍💻 **Same Session**         | The script must execute in the **same user session** that set the breakpoint.                                                            |
+| 👤 **User-Specific**        | Debugging is **session-specific**—**only your session is affected**. Your coworkers **will not see** or be affected by your breakpoints. |
+
+
+
+
+
+
+🚫 What Cannot Be Debugged
+You cannot use the Script Debugger to step through:
+
+❌ Asynchronous Business Rules
+
+❌ Scheduled Jobs
+
+❌ Workflow Scripts
+
+❌ Inbound Email Actions
+
+
+
+
+
+
+🎯 Breakpoints in Script Debugger
+🔍 What is a Breakpoint?
+A breakpoint is a pause point in your server-side script that allows you to inspect and debug the script at runtime.
+
+
+
+
+✅ Key Features of Breakpoints
+
+| Feature                  | Description                                                                                                  |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| ⏸ **Pauses Execution**   | When code execution reaches a breakpoint, it **pauses** so you can examine variable values, call stack, etc. |
+| 🗂 **Cross-Scope List**  | Script Debugger shows **all your breakpoints** across the platform (no matter the application scope).        |
+| 🧾 **Organized by**      | Displayed by **script type**, **script name**, and **line number**.                                          |
+| 🔄 **Real-Time Updates** | The list of breakpoints **updates live** as you add or remove them.                                          |
+
+
+
+
+
+🎨 Breakpoint Colors
+
+| Color       | Meaning                                                                                 |
+| ----------- | --------------------------------------------------------------------------------------- |
+| 🔴 **Red**  | **Active** breakpoint (will pause script execution).                                    |
+| 🔵 **Blue** | **Inactive** breakpoint (script won’t pause here, possibly because debugger is closed). |
+
+
+
+
+🗑 Managing Breakpoints
+Click on a breakpoint in the coding pane to remove it.
+
+You can also manage breakpoints from the Breakpoints List inside the Script Debugger panel.
+
+
+
+
+
+
+
+🪵 Script Debugger – Log Points
+🔍 What Are Log Points?
+Log Points allow developers to:
+
+Inject custom log messages into scripts at specific lines without pausing execution.
+
+Log messages without restarting services or interfering with normal operations.
+
+View output in the console (logs) instead of stepping through line-by-line.
+⚙️ Before You Use Log Points
+To enable log points:
+
+You must have the admin or script_debugger role.
+
+Set the system property:
+glide.debug.log_point = true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ideal for tracking variable values during execution without stopping the script.
+
+Useful in live systems where pausing execution is not acceptable.
+
+Great for debugging Business Rules, Script Includes, or Flow Logic in real-time.
+
+🧼 Cleaning Up
+Remove log points manually when you're done debugging.
+
+They won’t interfere with script behavior but can clutter logs if left behind.
+
+
+
+
+
+
+
+
+
+✅ Summary
+
+| Log Points                          | Breakpoints             |
+| ----------------------------------- | ----------------------- |
+| Logs message only                   | Pauses script execution |
+| Non-intrusive                       | Interrupts script flow  |
+| Developer-specific                  | Developer-specific      |
+| Enabled via `glide.debug.log_point` | No extra config needed  |
+
+
+
+
+
+
+
+
+
+
+
+🌐 What Are Transaction Details?
+When you're debugging a script (like a Business Rule), the Transaction Details panel shows you everything about the request that caused the script to run.
+
+Think of it like this:
+🕵️ It's a snapshot of what was happening at the exact moment the script was triggered.
+
+✅ What You Can See in Transaction Details
+What You See	What It Means
+URL	The exact web address (form/list/etc.) the user was on when the script ran. Helps you know where the action happened.
+Request Parameters	If data was sent through the URL or form (like a record ID or query), you can see it here.
+User Info	Shows which user triggered the action and their session ID. Very helpful if you’re impersonating or testing with multiple users.
+Network Info	Technical info like the user’s IP address, browser type, and connection method. Useful in rare network or security-related issues.
+
+🧠 Why This Is Useful
+Helps you understand exactly what triggered your script.
+
+You can debug issues related to specific users, records, or forms.
+
+Useful for verifying data passed in (e.g., from a button click, form submission, etc.).
+
+
+
+📘 Example
+Let’s say you’re debugging a Business Rule that runs when updating the "Incident" form.
+
+In Transaction Details, you might see:
+
+URL: /incident.do?sys_id=1234567890
+
+Request Parameters: sys_id=1234567890, action=save
+
+User: john.doe@company.com
+
+Session ID: abc12345sessionXYZ
+
+
+That means:
+
+User John Doe triggered the script.
+
+On the Incident form.
+
+While saving the record with sys_id 1234567890.
 
