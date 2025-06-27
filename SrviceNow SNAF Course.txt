@@ -4,7 +4,31 @@ ShortCuts:-
 Incident.list-----> it opens the list view of the incidents 
 
 
-incident.do-----> it directly take to create a new incident (opens form)
+incident.FORM-----> it directly take to create a new incident (opens form)
+
+
+TableName.Config =====> is used the configuration done for the table LIKE EXAMPLE ====> Incident.config====> results the configuration done for the incident table.
+
+
+<table_name>.list — opens the list view of the table in the content pane
+
+
+
+<table_name>.LlST — opens the list view of the table in a new window or tab
+
+
+
+<table_name>.form or <table_name>.do — opens the form view of the table in the content pane
+
+
+<table_name>.FORM — opens the form view of the table in a new window or tab
+
+
+
+<table_name>.CONFlG — opens the 
+configuration view of the table in a new window or tab
+
+
 
 
 Filters 
@@ -35,9 +59,9 @@ Group By
 
 
 Modifying lists and forms:-
-congigurre->list
-congigurre->notes
-congigurre->forms
+configure->list
+configure->notes
+configure->forms
 
 
 
@@ -74,7 +98,11 @@ https://chatgpt.com/share/684d160d-24d4-8009-a462-8317dc29dbde =====> ui policie
 
 UI ACTIONS 
 
-BUSINESS RULES
+BUSINESS RULES(Server Side Scripting)----------> AFTER CREATE
+AFTER DELETE 
+AFTER UPDATE
+BEFORE
+ASYNC
 
 CLIENT SCRIPTING  ---> ONLOAD(), ONSUBMIT(), ONCELLEDIT(), ONCHANGES() 
 ->IT WAS APPLICABLE ON THE FORM VIEW AND ALSO IN THE LIST VIEW.
@@ -85,9 +113,728 @@ DATA POLICY ---> is something similer to the ui policy but here only the read an
 
 
 
+UPDATE SET ---> it is used to carry out the changes amde in dev environment(dev instane)  to the peoduction instance .
+navigate to the update sets nd add the new ipdate set and give name and come to the another instance and add the created update set and check the connection (OK).
+And go to dev instance and create new configurations and add to them and now go to the production instance and COMMIT THEM.
 
 
 
 
+
+TABLES :- 
+
+Everything in service now was tables and every table has records is as a rowse and every table has columns means fields a table is a combination of rows and columns.
+if we want to tsee the tables int the service now we need to type the sys_db_object.
+
+If we want to see the fields(Columss) in a tables of servicenow we need to type the sys_dictionary.
+
+
+
+
+
+
+
+
+
+
+Macros ---> is used to find and attach the commonly used code to the ide.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Tables and RelationShips :- 
+
+One to Many :- one table is relation with another  table .
+---> caller field in incident table is in relation ship with the user table .
+
+
+Many to Many :- Many Groups have the Many roles;
+And Many roles can assign to many groups.
+
+
+Extendig tavble :- incident , problem , change tables extending the TASK table Fields.
+
+
+
+Different types of tables :-
+
+1) Base table :- it is the base table which is not extends any table it self it is a parent table 
+and it will extendable by another tables.
+ex--> Task table is the base table it is not extended by any other table itself it is own.
+
+2)Extended tables :- the table  which is extendes by the other table .
+ex-> incident table is extended from the task table.
+
+3) Core Table :-    The table which is create dby the service now itself. Like inbuilt tables exixteinf in the service now instances.
+----------------- 
+
+4) Custom Tables :- The tables which are created by the system admin by their own in the serviceNow Instance.
+
+
+
+*SCHEMA MAP* :-   where we can see the relations , references of the table sin a visual way. it will understands the how the tables really relations with among them.
+---------------
+
+
+
+
+
+*How to create custom table in serviceNow :-
+----------------------------------------------
+
+3 ways we can create a tables in serviceNow
+
+ 
+------>Go to All and serach for the tables under the system definition 
+
+
+-----> And also search for sys_db_oobjects ----> where all rable will be int he this only..
+
+------> and another way is go to tables and columns and their is an ui action to create the table as the CREATE TABLE.
+
+
+----> by using any of them create the table and then usert the fileds that uu need to be in the table .
+
+----> and uu can easily cystiomize the fields the way u want to use un your modeuole/sub module and also with different feuters and u can make sime fields among them as mandatory and some fields among them as the readOnly and some fields among them as the autonumbering etc......
+
+
+
+
+
+
+
+How to extend a table in another tBLE AND HOW to override the dictioneries from one tale to another table :-
+--------------------------------------------------------------------------------------------------------------
+
+---> GO and create th etable and choose the extends dies and seect the table u want to extend and thn all the fields among that table will be incorporate and integrate with the table uu created and use those fields according to ur requiremnent for that table.
+
+
+🔹 What is a Dictionary Override in ServiceNow?
+A Dictionary Override in ServiceNow allows you to change the default dictionary settings of a field for a specific extended table without modifying the parent table's definition.
+
+🔍 Why Use Dictionary Override?
+When inheriting fields from a parent table (like Task or Incident) and you want different behavior for a child table (Change, Problem, etc.)
+
+To override properties like:
+
+Mandatory
+
+Read-only
+
+Default value
+
+Reference Qualifier
+
+Field label
+
+📘 Example
+Let’s say:
+
+The Task table has a field priority (mandatory).
+
+You don’t want priority to be mandatory on the Change table (which extends Task).
+
+Instead of modifying the parent, you:
+✅ Use Dictionary Override on Change → priority
+⏩ and set Mandatory = false.
+
+🧱 How to Add a Dictionary Override
+Go to the field dictionary of the parent table (e.g., Task → priority).
+
+Scroll down to the Dictionary Overrides related list.
+
+Click New.
+
+Choose the child table (e.g., Change).
+
+Override the property you want (e.g., uncheck Mandatory).
+
+Save.
+
+⚠️ Important Notes
+Dictionary overrides only affect the specific child table.
+
+This is useful in Table Inheritance scenarios.
+
+Does not duplicate the field — it still inherits but behaves differently.
+
+
+
+
+
+
+
+
+
+
+
+
+
+*USERS AND GROUPS*:-
+---------------------
+---> we can create the users and we can set the password to users and we can add them to the groups they need to belong and we can easily put a group of users in a group.
+---System security---> users, users and groups 
+
+ONCE GO THROUH THE PDF OF CHATGPT TO COVER .
+
+
+*IMPORT SET* :-
+-------------
+
+Once gothou thepdf preset in the current folder
+
+
+---->
+SLA (Service Level Agreement) :-
+
+---------------------------------
+
+
+Service Catalog:-
+------------------
+
+catalog -----> category ----> items
+
+variable 
+variable sets 
+order guide 
+
+
+
+
+
+
+***Creating the catalog items using the catalog builder***
+-------------------------------------------------------------
+
+go to the catalog builder and create a item by using the existing template and now you can customize the things as you need for Ur item and them select the variables means the questions and then add the category of that item and then give the aces to the groups who need to access that item and then add the pricing details by coming to the maintain items section and then now test your item will purchasable or not.
+
+
+After ordering thar product obviously the hierarchy will build as per previous as when you order the order number was generated and then the approver need to approve the item and then tasks re scheduled to perform as the item is in stock and etcccc. then after all tasks executed successfully then the item can deliver.
+
+
+
+
+***FLOW DESIGNER***
+----------------------
+
+it is like the automation like when a specific condition happen then trigger
+
+WHAT IS MEAN BY FLOW DESIGNER:-
+-------------------------------
+
+Flow Designer in ServiceNow is a no-code/low-code tool used to automate processes across the platform. It provides a drag-and-drop interface to design, create, and manage flows that perform a series of actions based on triggers and conditions, all without writing traditional code.
+
+
+
+
+✅ Key Concepts in Flow Designer:
+
+| Concept         | Description                                                                                        |
+| --------------- | -------------------------------------------------------------------------------------------------- |
+| **Flow**        | A container that holds the logic of your automation (trigger + actions).                           |
+| **Trigger**     | The starting point of a flow (e.g., when a record is created, updated, deleted, or on a schedule). |
+| **Action**      | The steps performed in a flow (e.g., create a record, send an email, update a field).              |
+| **Data Pill**   | Data items that can be reused across steps, shown as pills.                                        |
+| **Conditions**  | Used to add logic/decision points in the flow (like "if", "else").                                 |
+| **Subflow**     | A reusable set of flow actions that can be called inside other flows.                              |
+| **Script Step** | A step where a developer can write a small piece of script if needed (for complex logic).          |
+
+
+
+
+
+
+🛠️ Example Use Case:
+Automatically send an approval request when a new change request is created.
+
+Trigger: Record created in "Change Request" table.
+
+Action 1: Create approval record.
+
+Action 2: Send an email to approver.
+
+Action 3: Wait for approval.
+
+Action 4: Update the change request status.
+
+🧠 Why Use Flow Designer?
+No scripting required for most tasks.
+
+Easily automate manual workflows.
+
+Reusable logic with subflows and actions.
+
+Integration with other ServiceNow tables and modules.
+
+Helps enforce business rules and streamline processes.
+
+
+
+
+
+
+
+USE CASES OF THE FLOW DESIGNER :-
+-----------------------------------
+
+like when  catalog item is created then that item request will be goes to approval to approve and then after approval then the some tasks will be attached to that item and then the tasks completed then the item was delivered and the state went to closed.
+like this is the flow or default flow of any catalog item when we created but we can create our own flow by using the flow designer concept like after creating the item whom we need the approval and which group need to give the approval and after approval what are the tasks we need to perform af6ter the approval and we can create the tasks as wee specify and then we can set the flow to what ever we need to ben in that . and these things are done by using the triggers and actions and data pill.
+
+
+
+
+
+***CONFIGURATIONAL MANAGEMENT DATABASE***  :-
+---------------------------------------------
+
+once go and refer to pdf in current folder.
+
+
+
+means we have an configuration items as servers , routers, computers and other things which are able to full fill the it requirements then the all information about that configuration items will be in the CMDB it is like a centralized repository and storage of the ci items and their we can see the relationships  of the ci items and their is a parent child also in the relation ships and their is a levels of relationship like L1, L2, L3 and so on . if any one of the parent is diagnosed then the all dependent ci items also will get diagnosed then all the system and server and etc which are depending will also get diagnosed and we can raise a incident on that server means ci item then while we are seeing the ci item dependency we can see the repair symbol on the ci item which was raised the incident and we also raise a problem if it is effected to the large count of users and we can see the CMDB classes to see the categories of the ci items and we can see the all items and all other things related to the ci items , and we can easily build a query for the ci items and we have the ci discovery for automation and we have the ci dashboard to see the co item and how many incidents are created on that particular ci item and ho any are depending on that ci item.
+
+
+
+
+
+***Service Portal*** :-
+-----------------------
+ In service Portal we can easily use the user interface and it is a very friendly user interface and here we ca easily track our requests and status of our requests easily and we can easily use the service Now platform and here we can find the knowledge based articles also and here we have different components like widgets, pages , branding editor etc... and we can order the tings how actually we are using the service CatLog 
+
+
+
+***Knowledge Management***:-
+------------------------------
+
+What is Knowledge Management
+• In ServiceNow, it allows user's to create, edit and view knowledge
+articles to share information across the organization.
+• Each article contains information that can help the end users or an
+agent who is going to perform troubleshooting.
+• Knowledge Articles are part of different categories and knowledge
+base.
+• knowledge, knowledge_manager, knowledge_admin
+
+ 
+
+
+KM Features
+• Knowledge Bases
+• Knowledge Categories
+• Draft KA
+• Approval process
+• Publish Article
+• Article Feedback
+• Retire Article
+
+
+
+
+
+***SERVICE NOW WORKSPACE AND SERVICE EMPLOYEE CENTER :-***
+-------------------------------------------------------------
+
+there are the types of the workspaces like agent workspace , asset workspace etc....
+
+
+
+
+**Employee Center in ServiceNow - Detailed Explanation**
+
+---
+
+### 📌 What is Employee Center in ServiceNow?
+
+**Employee Center** is a **modern, unified self-service portal** in ServiceNow where employees can **access services, information, and support** from departments like HR, IT, Facilities, Legal, and Finance — all from a single interface.
+
+It serves as a **"one-stop shop"** for:
+
+* Raising service requests or reporting issues
+* Searching for knowledge articles or FAQs
+* Accessing tools and services
+* Tracking the status of submitted requests or cases
+
+---
+
+### 🌟 Why is Employee Center Important?
+
+Before Employee Center, organizations had multiple separate portals, creating confusion and inconsistency in the user experience.
+
+Employee Center solves this by:
+
+* Offering a **single, unified experience**
+* Improving employee satisfaction
+* Making it easier to find services and information
+* Reducing service resolution times
+
+---
+
+### 📎 Key Features of Employee Center
+
+| Feature                    | Description                                  |
+| -------------------------- | -------------------------------------------- |
+| 🔍 Universal Search        | Search for articles, services, people, FAQs  |
+| 🏍️ Service Catalog        | Request items like hardware, software, leave |
+| 🎟️ Case Management        | View and track submitted requests or issues  |
+| 📚 Knowledge Base          | Access help articles for self-resolution     |
+| 📢 Announcements           | Company updates and targeted communication   |
+| 🧑‍🧳 Personalized Content | Based on role, department, or location       |
+| 📱 Mobile-Friendly         | Accessible from any device                   |
+
+---
+
+### 📸 Real-World Use Cases
+
+**Example 1: IT Request**
+Employee goes to Employee Center → Clicks "Request Laptop" → Fills form → Tracks status.
+
+**Example 2: HR Inquiry**
+Employee wants leave details → Searches "Maternity Leave Policy" → Reads article → No need to raise a ticket.
+
+**Example 3: Facilities Request**
+Reports broken AC in meeting room → Submits issue in Facilities category → Team updates status.
+
+---
+
+### 🧐 Technical Insights (For Admins/Developers)
+
+* Built using **Service Portal** or **UI Builder**
+* Supports **custom branding** and themes
+* Uses **Widgets**, **Catalog Items**, **Knowledge Base**, **Approvals**
+* Integrated with **Case Management**, **Flow Designer**, and **Search Services**
+* Enables **targeted content** through roles, topics, and audiences
+
+---
+
+### 🏢 Employee Center vs Employee Center Pro
+
+| Feature                  | Employee Center | Employee Center Pro    |
+| ------------------------ | --------------- | ---------------------- |
+| Unified Portal           | ✅ Yes           | ✅ Yes                  |
+| Core Self-ervice         | ✅ Yes           | ✅ Yes                  |
+| Topics & Personalization | ❌ Limited       | ✅ Advanced             |
+| Page Templates           | ❌ Basic         | ✅ Rich and Flexible    |
+| Search Filters           | ❌ Limited       | ✅ Smart Search Options |
+
+---
+
+### ✅ Benefits of Using Employee Center
+
+* Better employee experience
+* Easy navigation and quick access
+* Reduced support tickets
+* Personalized and relevant content
+* Fully responsive and mobile-ready
+
+---
+
+### 📅 Summary Table
+
+| Aspect       | Details                                   |
+| ------------ | ----------------------------------------- |
+| What is it?  | Central self-service portal for employees |
+| Who uses it? | All employees (HR, IT, Legal, etc.)       |
+| Built on     | Service Portal / UI Builder               |
+| Purpose      | Unify services, boost satisfaction        |
+
+---
+
+**End of Document**
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Reports and Dashboards in ServiceNow**
+--------------------------------------------
+---
+
+## 📄 Reports in ServiceNow
+
+### ✅ What is a Report?
+
+A **Report in ServiceNow** is a visual representation of data from ServiceNow tables, used to analyze trends, monitor performance, and make decisions.
+
+---
+
+### 🔧 How to Access Reports:
+
+1. Navigate to **Self-Service > Reports** or **Reporting > View / Create**.
+2. Users with proper roles (like `report_viewer`, `admin`) can:
+
+   * Create
+   * View
+   * Share
+   * Schedule reports
+
+---
+
+### 📊 Common Report Types:
+
+| Type            | Use Case                                 |
+| --------------- | ---------------------------------------- |
+| **List Report** | Tabular format of data records           |
+| **Bar Chart**   | Compare counts or sums across categories |
+| **Pie Chart**   | Show percentages                         |
+| **Time Series** | Trends over time (line/area charts)      |
+| **Pivot Table** | Grouping & aggregating data like Excel   |
+
+---
+
+### ⚙️ Creating a Report (Step-by-Step):
+
+1. Go to **Reports > View / Run** → Click **New**.
+2. Choose a **Source Table** (e.g., Incident).
+3. Select a **Report Type** (Bar, Pie, List, etc.).
+4. Apply **Conditions** (e.g., Active = true).
+5. Group or stack by fields if needed.
+6. **Save** or **Run** the report.
+7. You can **schedule**, **export**, or **add to a dashboard**.
+
+---
+
+## 📊 Dashboards in ServiceNow
+
+### ✅ What is a Dashboard?
+
+A **Dashboard** is a **visual container** that holds multiple **Reports**, **Performance Analytics Widgets**, or **Other Visual Data**.
+
+---
+
+### 📌 Usage:
+
+* Provide a **quick overview** of KPIs.
+* Used by **managers**, **agents**, or **admins**.
+* Can be **role-based** or **department-specific**.
+
+---
+
+### 🧱 Types of Dashboards:
+
+| Type                                | Description                                     |
+| ----------------------------------- | ----------------------------------------------- |
+| **Homepage Dashboard**              | Legacy style, homepage with widgets and reports |
+| **Performance Analytics Dashboard** | Advanced dashboards with analytics widgets      |
+| **Workspaces Dashboards**           | Used in Agent/Employee Workspaces               |
+
+---
+
+### 🔧 Creating a Dashboard (Basic Steps):
+
+1. Navigate to **Performance Analytics > Dashboards** or **Self-Service > Dashboards**.
+2. Click **Create New**.
+3. Add widgets like:
+
+   * Reports
+   * PA Widgets
+   * HTML blocks
+4. Arrange layout using **drag & drop**.
+5. Share access with roles or users.
+6. Save and Publish.
+
+---
+
+### 📂 Examples:
+
+| Role       | Report/Dashboard View                         |
+| ---------- | --------------------------------------------- |
+| IT Manager | Dashboard showing open incidents by priority  |
+| HR         | Dashboard with onboarding case status reports |
+| Security   | Dashboard tracking critical vulnerabilities   |
+
+---
+
+### 🔐 Access Control:
+
+* Reports and dashboards are **role-based**.
+* Can be **restricted to groups**, users, or available globally.
+
+---
+
+## 📬 Exporting and Sharing:
+
+* Export to **PDF**, **Excel**, or **Email** reports.
+* Schedule for automatic delivery.
+* Embed dashboards in the **Service Portal** for end users.
+
+
+
+
+
+
+****Customizing our own pdi's like adding the image of our company etc....
+
+--> go to the my company module and add your own image instead of the service Now Image . 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+**Discover the Secrets of ServiceNow Instance Configuration!**
+
+---
+
+## 🔐 What is a ServiceNow Instance?
+
+A **ServiceNow instance** is your personal/private cloud environment provided by ServiceNow. It’s where you build, test, and run your applications and IT services.
+
+---
+
+## 🧹 Core Components of Instance Configuration
+
+### 1. **System Properties**
+
+* Access: **System Properties > All**
+* Control behavior of modules (e.g., incident, user registration, email notifications).
+* Examples:
+
+  * `glide.ui.theme`: Sets the UI theme.
+  * `glide.attachment.extensions`: Controls allowed file types.
+
+---
+
+### 2. **System Definition**
+
+* Includes Tables, Fields, Dictionary Entries, and Business Rules.
+* Key for customizations:
+
+  * **Tables**: Define your data structure.
+  * **Dictionary**: Add validations, default values, etc.
+  * **Business Rules**: Automate actions on records.
+
+---
+
+### 3. **Instance Settings**
+
+* Navigate to **System Settings** (gear icon on top-right).
+* Customize:
+
+  * Theme
+  * Accessibility
+  * Lists and Forms display
+  * Developer tools
+
+---
+
+### 4. **Update Sets**
+
+* Used to **capture configurations** and move them across instances (Dev → Test → Prod).
+* Contains customizations like:
+
+  * UI Policies
+  * Client Scripts
+  * Workflows
+* Go to: **System Update Sets > Local Update Sets**
+
+---
+
+### 5. **Plugins**
+
+* Enhance functionality.
+* Install or activate from **System Definition > Plugins**.
+* Examples:
+
+  * **Performance Analytics**
+  * **Virtual Agent**
+  * **CMDB Integration**
+
+---
+
+### 6. **Users, Roles, and ACLs**
+
+* **Users**: `sys_user`
+* **Groups**: `sys_user_group`
+* **Roles**: Control access (`admin`, `itil`, etc.)
+* **ACLs (Access Control Lists)**:
+
+  * Control CRUD access on tables/fields.
+  * Example: Only admins can delete from the `incident` table.
+
+---
+
+### 7. **Script Includes and Business Logic**
+
+* Use **Script Includes** for reusable server-side code.
+* Create custom server logic using:
+
+  * **Business Rules**
+  * **Flow Designer**
+  * **Workflows**
+
+---
+
+### 8. **Instance Security Settings**
+
+* Enable security controls:
+
+  * **IP Whitelisting**
+  * **Multi-Factor Authentication (MFA)**
+  * **Session Timeout Settings**
+* Go to: **System Security > Security Settings**
+
+---
+
+### 9. **Service Portal Configuration**
+
+* Customize your **self-service portal** via:
+
+  * **Service Portal > Portals**
+  * Themes, Widgets, Pages
+* Control branding and UI/UX
+
+---
+
+### 10. **System Logs and Monitoring**
+
+* Track all activities and errors:
+
+  * **System Logs > All**
+  * **Security Logs**
+  * **Script Logs**
+* Useful for debugging and audit purposes.
+
+---
+
+## 🧠 Pro Tips
+
+| Tip # | Secret Insight                                                  |
+| ----- | --------------------------------------------------------------- |
+| 1     | Always test your update sets in a **sub-prod instance**.        |
+| 2     | Use **Scoped Apps** for modular, upgrade-safe customizations.   |
+| 3     | Enable **Audit History** for critical tables to track changes.  |
+| 4     | Use **Application Picker** to isolate work.                     |
+| 5     | Bookmark **System Diagnostics > Stats** to monitor performance. |
 
 
